@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body header {
+  border-bottom: 1px solid black;
+}
+body main {
+  display: flex;
+}
+body main .filter-section {
+  width: 20%;
+  height: 95vh;
+  background-color: lightgray;
+  border-right: 1px solid black;
+}
+body main .book-section {
+  width: 80%;
+}
+body main .book-section .settings-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+body main .book-section .settings-wrapper .search-wrapper {
+  display: flex;
+}
+body main .book-section .settings-wrapper .sort-menu {
+  display: flex;
+}
+body main .book-section .book-list-wrapper {
+  height: 85vh;
+  position: relative;
+  overflow: auto;
+}
+body main .book-section .book-list-wrapper .book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+body main .book-section .book-list-wrapper .book-list li {
+  list-style-type: none;
+}
+body main .book-section .book-list-wrapper .book-list li .book-dummy {
+  height: 330px;
+  width: 330px;
+  border: 2px brown solid;
+  margin-bottom: 30px;
+}
+body main .book-section .book-list-wrapper .book-list li .book-dummy .picture-wrapper {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  justify-content: center;
+}
+body main .book-section .book-list-wrapper .book-list li .book-dummy .picture-wrapper img {
+  width: 50%;
+  height: 100%;
+}/*# sourceMappingURL=index.css.map */

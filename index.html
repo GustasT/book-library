@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    
+    <header>
+        <div class="website-logo">
+            <h1>My Books</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="filter-section">
+            <h2>Filters</h2>
+
+
+            <p>Author: </p>
+              <label>Any
+                <input type="checkbox">
+              </label>
+              <label>One
+                <input type="checkbox">
+              </label>
+              <label>Two
+                <input type="checkbox">
+              </label>
+              <label>Three
+                <input type="checkbox">
+              </label>
+              <label>Four
+                <input type="checkbox">
+              </label>
+
+              <p>Category: </p>
+              <label>Any
+                <input type="checkbox">
+              </label>
+              <label>One
+                <input type="checkbox">
+              </label>
+              <label>Two
+                <input type="checkbox">
+              </label>
+              <label>Three
+                <input type="checkbox">
+              </label>
+              <label>Four
+                <input type="checkbox">
+              </label>
+              <button id="filterBtn">show results</button>
+
+              <div class="form-wrapper">
+                <form>
+                    <input type="text" id="author" name="author" placeholder="author" >
+                    <input type="text" id="bookName" name="bookName" placeholder="book name" >
+                    <input type="text" id="category" name="category" placeholder="category" >
+                    <input type="number" id="year" name="year" placeholder="year" >
+                    <input type="number" id="price" name="price" placeholder="price" >
+                    <input type="text" id="bookImageUrl" name="bookImageUrl" placeholder="book image url" >
+                    <br>
+                    <button type="submit" id="addBookBtn">Add book</button>
+                </form>
+              </div>
+            
+        </section>
+
+        <section class="book-section">
+            
+        <div class="settings-wrapper">
+            
+            <div class="search-wrapper">
+                    <input type="text" name="search" class="search" id="search" placeholder="enter a keyword">
+                    <button>search</button>
+            </div>
+
+            <div class="sort-menu">
+                <p>Sort by price: </p>
+                <button>Lowest to highest</button>
+                <button>Highest to lowest</button>
+                <button>Dont sort</button>
+            </div>
+        </div>
+
+            <div class="book-list-wrapper">
+                <ul class="book-list">
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="book-dummy">
+                            <div class="picture-wrapper">
+                                <img src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium" alt=".">
+                            </div>
+                            <div>
+                                <p>Author</p>
+                                <p>Book name</p>
+                                <p>Category</p>
+                                <p>Year</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
