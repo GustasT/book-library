@@ -1,6 +1,9 @@
 const bookForm = document.getElementById("bookForm");
+const helperMessage = document.querySelector(".helper-message");
 
 window.onload = loadBooks();
+
+// knygu pridejimas
 
 bookForm.addEventListener("submit", () => {
   event.preventDefault();
@@ -10,13 +13,17 @@ bookForm.addEventListener("submit", () => {
   }
 
   if (
-    formAuthor.value.length != 0 &&
-    formBookName.value.length != 0 &&
-    formCategory.value.length != 0 &&
-    formYear.value.length != 0 &&
-    formPrice.value.length != 0 &&
-    formBookImageUrl.value.length != 0
+    formAuthor.value.length == 0 ||
+    formBookName.value.length == 0 ||
+    formCategory.value.length == 0 ||
+    formYear.value.length == 0 ||
+    formPrice.value.length == 0 ||
+    formBookImageUrl.value.length == 0
   ) {
+    helperMessage.innerHTML = "please fill in all the fields!";
+  } else if (formPrice.value < 0) {
+    helperMessage.innerHTML = "price can not be negative?!";
+  } else {
     function Book() {
       this.author = formAuthor.value;
       this.bookName = formBookName.value;
@@ -35,11 +42,14 @@ bookForm.addEventListener("submit", () => {
     localStorage.setItem("bookList", JSON.stringify(booksArray));
 
     loadBooks();
-  } else {
-    const helperMessage = document.querySelector(".helper-message");
-    helperMessage.innerHTML = "please fill in all the fields!";
+
+    helperMessage.innerHTML = "book added!";
   }
 });
+
+// knygu pridejimas
+
+// knygu atvaizdavimas
 
 const formAuthor = document.getElementById("formAuthor");
 const formBookName = document.getElementById("formBookName");
@@ -49,6 +59,10 @@ const formPrice = document.getElementById("formPrice");
 const formBookImageUrl = document.getElementById("formBookImageUrl");
 
 function loadBooks() {
+  if (!localStorage.getItem("bookList")) {
+    localStorage.setItem("bookList", "[]");
+  }
+
   const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
   const bookList = document.querySelector(".book-list");
 
@@ -69,7 +83,7 @@ function loadBooks() {
         <p>${parsedBooks[i].bookName}</p>
         <p>${parsedBooks[i].category}</p>
         <p>${parsedBooks[i].year}</p>
-        <p>${parsedBooks[i].price}</p>
+        <p>${parsedBooks[i].price}€</p>
       </div>
     </div>
   </li>`;
@@ -77,3 +91,5 @@ function loadBooks() {
     bookList.appendChild(li);
   }
 }
+
+// knygu atvaizdavimas
