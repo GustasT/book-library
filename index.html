@@ -19,32 +19,42 @@
         <h2>Filters</h2>
 
         <p>Author:</p>
-        <label
-          >Any
-          <input type="checkbox" />
-        </label>
-        <label
+        <button>any</button>
+
+        <ul id="authorList">
+          <!-- <li>
+            <label
+              >One
+              <input type="checkbox" id="authorOne" />
+            </label>
+          </li>
+          <li>
+            <label
+              >One
+              <input type="checkbox" id="authorOne" />
+            </label>
+          </li> -->
+        </ul>
+
+        <!-- <label
           >One
-          <input type="checkbox" />
+          <input type="checkbox" id="authorOne" />
         </label>
         <label
           >Two
-          <input type="checkbox" />
+          <input type="checkbox" id="authorTwo" />
         </label>
         <label
           >Three
-          <input type="checkbox" />
+          <input type="checkbox" id="authorThree" />
         </label>
         <label
           >Four
-          <input type="checkbox" />
-        </label>
+          <input type="checkbox" id="authorFour" />
+        </label> -->
 
         <p>Category:</p>
-        <label
-          >Any
-          <input type="checkbox" />
-        </label>
+        <button>any</button>
         <label
           >One
           <input type="checkbox" />
@@ -61,7 +71,6 @@
           >Four
           <input type="checkbox" />
         </label>
-        <button id="filterBtn">show results</button>
 
         <div class="form-wrapper">
           <form id="bookForm">
@@ -125,7 +134,7 @@
         </div>
 
         <div class="book-list-wrapper">
-          <ul class="book-list">
+          <ul id="bookList">
             <!-- <li>
               <div class="book-dummy">
                 <div class="picture-wrapper">

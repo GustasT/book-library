@@ -1,7 +1,11 @@
 const bookForm = document.getElementById("bookForm");
 const helperMessage = document.querySelector(".helper-message");
+const bookList = document.getElementById("bookList");
 
-window.onload = loadBooks();
+window.onload = function () {
+  loadAllBooks();
+  loadAllAuthors();
+};
 
 // knygu pridejimas
 
@@ -41,7 +45,9 @@ bookForm.addEventListener("submit", () => {
 
     localStorage.setItem("bookList", JSON.stringify(booksArray));
 
-    loadBooks();
+    loadAllBooks();
+
+    loadAllAuthors();
 
     helperMessage.innerHTML = "book added!";
   }
@@ -58,13 +64,14 @@ const formYear = document.getElementById("formYear");
 const formPrice = document.getElementById("formPrice");
 const formBookImageUrl = document.getElementById("formBookImageUrl");
 
-function loadBooks() {
+function loadAllBooks() {
   if (!localStorage.getItem("bookList")) {
     localStorage.setItem("bookList", "[]");
   }
 
   const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
-  const bookList = document.querySelector(".book-list");
+
+  console.log(parsedBooks);
 
   bookList.innerHTML = "";
 
@@ -93,3 +100,76 @@ function loadBooks() {
 }
 
 // knygu atvaizdavimas
+
+// knygu filtravimas
+
+// function filterBooks(author) {
+//   const filteredBooks = JSON.parse(localStorage.getItem("bookList")).filter(
+//     (book) => book.author == author
+//   );
+
+//   console.log(filteredBooks);
+
+//   function loadFilteredBooks() {
+//     bookList.innerHTML = "";
+
+//     for (let i = 0; i < filteredBooks.length; i++) {
+//       let li = document.createElement("li");
+//       li.innerHTML = `<li>
+//       <div class="book-dummy">
+//         <div class="picture-wrapper">
+//           <img
+//             src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium"
+//             alt="."
+//           />
+//         </div>
+//         <div>
+//           <p>${filteredBooks[i].author}</p>
+//           <p>${filteredBooks[i].bookName}</p>
+//           <p>${filteredBooks[i].category}</p>
+//           <p>${filteredBooks[i].year}</p>
+//           <p>${filteredBooks[i].price}€</p>
+//         </div>
+//       </div>
+//     </li>`;
+
+//       bookList.appendChild(li);
+//     }
+//   }
+
+//   loadFilteredBooks();
+// }
+
+//knygu filtravimas
+
+// filtru atvaizdavimas
+
+// nuo cia gerai----------------------
+
+const authorList = document.getElementById("authorList");
+
+function loadAllAuthors() {
+  const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
+
+  let authorArray = [];
+
+  for (let i = 0; i < parsedBooks.length; i++) {
+    if (!authorArray.includes(parsedBooks[i].author)) {
+      authorArray.push(parsedBooks[i].author);
+    }
+  }
+
+  console.log(authorArray);
+
+  authorList.innerHTML = "";
+
+  for (let i = 0; i < authorArray.length; i++) {
+    let li = document.createElement("li");
+    li.innerHTML = `<label
+    >${authorArray[i]}
+    <input type="checkbox" id="${authorArray[i]}" />
+  </label>`;
+
+    authorList.appendChild(li);
+  }
+}
