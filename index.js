@@ -5,6 +5,7 @@ const bookList = document.getElementById("bookList");
 window.onload = function () {
   loadAllBooks();
   loadAllAuthors();
+  loadAllCategories();
 };
 
 // knygu pridejimas
@@ -142,9 +143,7 @@ function loadAllBooks() {
 
 //knygu filtravimas
 
-// filtru atvaizdavimas
-
-// nuo cia gerai----------------------
+// autoriu atvaizdavimas
 
 const authorList = document.getElementById("authorList");
 
@@ -173,3 +172,37 @@ function loadAllAuthors() {
     authorList.appendChild(li);
   }
 }
+
+// autoriu atvaizdavimas
+
+// kategoriju atvaizdavimas
+
+const categoryList = document.getElementById("categoryList");
+
+function loadAllCategories() {
+  const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
+
+  let categoryArray = [];
+
+  for (let i = 0; i < parsedBooks.length; i++) {
+    if (!categoryArray.includes(parsedBooks[i].category)) {
+      categoryArray.push(parsedBooks[i].category);
+    }
+  }
+
+  console.log(categoryArray);
+
+  categoryList.innerHTML = "";
+
+  for (let i = 0; i < categoryArray.length; i++) {
+    let li = document.createElement("li");
+    li.innerHTML = `<label
+    >${categoryArray[i]}
+    <input type="checkbox" id="${categoryArray[i]}" />
+  </label>`;
+
+    categoryList.appendChild(li);
+  }
+}
+
+// kategoriju atvaizdavimas
