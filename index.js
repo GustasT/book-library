@@ -91,8 +91,8 @@ function loadActiveArrayBooks() {
 
   for (let i = 0; i < activeBookArray.length; i++) {
     let li = document.createElement("li");
-    li.innerHTML = `<li>
-    <div class="book-dummy">
+    li.innerHTML = `<li id="${activeBookArray[i].id}" >
+    <div class="book-dummy ">
       <div class="picture-wrapper">
         <img
           src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium"
@@ -105,6 +105,8 @@ function loadActiveArrayBooks() {
         <p>${activeBookArray[i].category}</p>
         <p>${activeBookArray[i].year}</p>
         <p>${activeBookArray[i].price}€</p>
+        <button>edit</button>
+        <button onclick="deleteBook(${activeBookArray[i].id})">delete</button>
       </div>
     </div>
   </li>`;
@@ -347,3 +349,40 @@ searchButton.addEventListener("click", () => {
 });
 
 // searchinimas
+
+/// deletinimas
+
+function deleteBook(bookId) {
+  const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
+
+  const book = document.getElementById(bookId);
+
+  book.innerHTML = "";
+
+  // console.log(parsedBooks);
+
+  const parsedBooksIndex = parsedBooks
+    .map(function (x) {
+      return x.id;
+    })
+    .indexOf(bookId);
+  // console.log(parsedBooksIndex);
+
+  parsedBooks.splice(parsedBooksIndex, 1);
+  // console.log(parsedBooks);
+
+  const activeBookArrayIndex = activeBookArray
+    .map(function (x) {
+      return x.id;
+    })
+    .indexOf(bookId);
+
+  activeBookArray.splice(activeBookArrayIndex, 1);
+
+  localStorage.setItem("bookList", JSON.stringify(parsedBooks));
+
+  loadAllAuthors();
+  loadAllCategories();
+}
+
+// deletinimas
