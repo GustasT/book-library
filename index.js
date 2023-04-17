@@ -314,3 +314,36 @@ const sortById = () => {
 };
 
 // sortinimas
+
+// searchinimas
+
+const searchField = document.getElementById("searchField");
+const search = searchField.value;
+
+const searchBooks = function (search) {
+  let keys = ["author", "bookName", "category", "year", "price"];
+  const lowSearch = search.toLowerCase();
+
+  const searchedBooks = activeBookArray.filter((book) =>
+    keys.some((key) => String(book[key]).toLowerCase().includes(lowSearch))
+  );
+
+  console.log(searchedBooks);
+
+  activeBookArray = searchedBooks;
+};
+
+const searchButton = document.getElementById("searchButton");
+
+searchButton.addEventListener("click", () => {
+  const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
+  activeBookArray = parsedBooks;
+  searchBooks(searchField.value);
+  loadActiveArrayBooks();
+  if (activeBookArray == false) {
+    helperMessage.innerHTML =
+      "no results for this search. try a different keyword";
+  }
+});
+
+// searchinimas
