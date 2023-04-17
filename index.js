@@ -79,11 +79,17 @@ function loadAllBooks() {
 
   const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
 
+  activeBookArray = parsedBooks;
+
   console.log(parsedBooks);
 
+  loadActiveArrayBooks();
+}
+
+function loadActiveArrayBooks() {
   bookList.innerHTML = "";
 
-  for (let i = 0; i < parsedBooks.length; i++) {
+  for (let i = 0; i < activeBookArray.length; i++) {
     let li = document.createElement("li");
     li.innerHTML = `<li>
     <div class="book-dummy">
@@ -94,11 +100,11 @@ function loadAllBooks() {
         />
       </div>
       <div>
-        <p>${parsedBooks[i].author}</p>
-        <p>${parsedBooks[i].bookName}</p>
-        <p>${parsedBooks[i].category}</p>
-        <p>${parsedBooks[i].year}</p>
-        <p>${parsedBooks[i].price}€</p>
+        <p>${activeBookArray[i].author}</p>
+        <p>${activeBookArray[i].bookName}</p>
+        <p>${activeBookArray[i].category}</p>
+        <p>${activeBookArray[i].year}</p>
+        <p>${activeBookArray[i].price}€</p>
       </div>
     </div>
   </li>`;
@@ -234,7 +240,7 @@ function filterByCategory(category) {
 
 // filtravimas kategorijom
 
-// ----------------------------------
+// filtravimas kombinuotas
 
 let activeBookArray = [];
 
@@ -254,34 +260,13 @@ function loadFilteredBooks() {
   if (activeBookArray == false) {
     loadAllBooks();
   } else {
-    bookList.innerHTML = "";
-
-    for (let i = 0; i < activeBookArray.length; i++) {
-      let li = document.createElement("li");
-      li.innerHTML = `<li>
-    <div class="book-dummy">
-      <div class="picture-wrapper">
-        <img
-          src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium"
-          alt="."
-        />
-      </div>
-      <div>
-        <p>${activeBookArray[i].author}</p>
-        <p>${activeBookArray[i].bookName}</p>
-        <p>${activeBookArray[i].category}</p>
-        <p>${activeBookArray[i].year}</p>
-        <p>${activeBookArray[i].price}€</p>
-      </div>
-    </div>
-  </li>`;
-
-      bookList.appendChild(li);
-    }
+    loadActiveArrayBooks();
   }
 }
 
-// --------------------
+// filtravimas kombinuotas
+
+// filtru valymas
 
 function clearBooksByAuthor() {
   const checkboxes = document.getElementsByClassName("author-checkbox");
@@ -302,3 +287,30 @@ function clearBooksByCategory() {
     }
   }
 }
+
+// filtru valymas
+
+// sortinimas
+
+const sortLowestToHighest = () => {
+  activeBookArray.sort((a, b) => {
+    return a.price - b.price;
+  });
+  loadActiveArrayBooks();
+};
+
+const sortHighestToLowest = () => {
+  activeBookArray.sort((a, b) => {
+    return b.price - a.price;
+  });
+  loadActiveArrayBooks();
+};
+
+const sortById = () => {
+  activeBookArray.sort((a, b) => {
+    return a.id - b.id;
+  });
+  loadActiveArrayBooks();
+};
+
+// sortinimas
