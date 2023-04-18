@@ -22,14 +22,16 @@ bookForm.addEventListener("submit", () => {
     formBookName.value.length == 0 ||
     formCategory.value.length == 0 ||
     formYear.value.length == 0 ||
-    formPrice.value.length == 0 ||
-    formBookImageUrl.value.length == 0
+    formPrice.value.length == 0
   ) {
     helperMessage.innerHTML = "please fill in all the fields!";
   } else if (formPrice.value < 0) {
     helperMessage.innerHTML = "price can not be negative?!";
   } else {
     let id = new Date().getTime();
+
+    formBookImageUrl.value =
+      "https://www.fcgov.com/recycling-item-images/img/hard-cover-book.jpg";
 
     function Book() {
       this.author = formAuthor.value;
@@ -109,7 +111,7 @@ function loadActiveArrayBooks() {
     <div class="book">
       <div class="picture-wrapper">
         <img
-          src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium"
+          src="${activeBookArray[i].bookImageUrl}"
           alt="."
         />
       </div>
