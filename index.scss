@@ -45,25 +45,24 @@ body {
           flex-wrap: wrap;
           justify-content: space-evenly;
 
-          li {
+          list-style-type: none;
+
+          .book {
             list-style-type: none;
+            height: 330px;
+            width: 330px;
+            border: 2px brown solid;
+            margin-bottom: 30px;
 
-            .book-dummy {
-              height: 330px;
-              width: 330px;
-              border: 2px brown solid;
-              margin-bottom: 30px;
+            .picture-wrapper {
+              display: flex;
+              height: 50%;
+              width: 100%;
+              justify-content: center;
 
-              .picture-wrapper {
-                display: flex;
-                height: 50%;
-                width: 100%;
-                justify-content: center;
-
-                img {
-                  width: 50%;
-                  height: 100%;
-                }
+              img {
+                width: 50%;
+                height: 100%;
               }
             }
           }

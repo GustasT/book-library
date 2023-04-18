@@ -38,23 +38,22 @@ body main .book-section .book-list-wrapper #bookList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-}
-body main .book-section .book-list-wrapper #bookList li {
   list-style-type: none;
 }
-body main .book-section .book-list-wrapper #bookList li .book-dummy {
+body main .book-section .book-list-wrapper #bookList .book {
+  list-style-type: none;
   height: 330px;
   width: 330px;
   border: 2px brown solid;
   margin-bottom: 30px;
 }
-body main .book-section .book-list-wrapper #bookList li .book-dummy .picture-wrapper {
+body main .book-section .book-list-wrapper #bookList .book .picture-wrapper {
   display: flex;
   height: 50%;
   width: 100%;
   justify-content: center;
 }
-body main .book-section .book-list-wrapper #bookList li .book-dummy .picture-wrapper img {
+body main .book-section .book-list-wrapper #bookList .book .picture-wrapper img {
   width: 50%;
   height: 100%;
 }/*# sourceMappingURL=index.css.map */

@@ -47,6 +47,18 @@ bookForm.addEventListener("submit", () => {
 
     booksArray.push(book);
 
+    console.log(booksArray);
+
+    const sortById = () => {
+      booksArray.sort((a, b) => {
+        return b.id - a.id;
+      });
+    };
+
+    sortById();
+
+    console.log(booksArray);
+
     localStorage.setItem("bookList", JSON.stringify(booksArray));
 
     loadAllBooks();
@@ -91,25 +103,29 @@ function loadActiveArrayBooks() {
 
   for (let i = 0; i < activeBookArray.length; i++) {
     let li = document.createElement("li");
-    li.innerHTML = `<li id="${activeBookArray[i].id}" >
-    <div class="book-dummy ">
+    li.setAttribute("id", activeBookArray[i].id);
+
+    li.innerHTML = `
+    <div class="book">
       <div class="picture-wrapper">
         <img
           src="https://www.adobe.com/express/create/cover/media_178ebed46ae02d6f3284c7886e9b28c5bb9046a02.jpeg?width=400&format=jpeg&optimize=medium"
           alt="."
         />
       </div>
-      <div>
-        <p>${activeBookArray[i].author}</p>
-        <p>${activeBookArray[i].bookName}</p>
-        <p>${activeBookArray[i].category}</p>
-        <p>${activeBookArray[i].year}</p>
-        <p>${activeBookArray[i].price}€</p>
-        <button>edit</button>
+      <div class="text-wrapper">
+        <p class="book-author">${activeBookArray[i].author}</p>
+        <p class="book-name">${activeBookArray[i].bookName}</p>
+        <p class="book-category">${activeBookArray[i].category}</p>
+        <p class="book-year">${activeBookArray[i].year}</p>
+        <span class="book-price">${activeBookArray[i].price}</span><span>€</span></br>
+        <button class="edit-button">edit</button>
         <button onclick="deleteBook(${activeBookArray[i].id})">delete</button>
       </div>
-    </div>
-  </li>`;
+      </div>
+ `;
+
+    //  onclick="editBook(${activeBookArray[i].id})"
 
     bookList.appendChild(li);
   }
@@ -310,7 +326,7 @@ const sortHighestToLowest = () => {
 
 const sortById = () => {
   activeBookArray.sort((a, b) => {
-    return a.id - b.id;
+    return b.id - a.id;
   });
   loadActiveArrayBooks();
 };
@@ -386,3 +402,80 @@ function deleteBook(bookId) {
 }
 
 // deletinimas
+
+// editinimas
+
+const ul = document.getElementById("bookList");
+
+ul.addEventListener("click", (event) => {
+  if (event.target.tagName === "BUTTON") {
+    const button = event.target;
+    const textWrapper = button.parentNode;
+    const book = textWrapper.parentNode;
+    const li = book.parentNode;
+    const ul = li.parentNode;
+
+    const bookAuthor = textWrapper.firstElementChild;
+    const bookName = bookAuthor.nextElementSibling;
+    const bookCategory = bookName.nextElementSibling;
+    const bookYear = bookCategory.nextElementSibling;
+    const bookPrice = bookYear.nextElementSibling;
+
+    if (button.textContent === "edit") {
+      bookAuthor.contentEditable = true;
+      bookName.contentEditable = true;
+      bookCategory.contentEditable = true;
+      bookYear.contentEditable = true;
+      bookPrice.contentEditable = true;
+
+      button.textContent = "save";
+    } else if ((button.textContent = "save")) {
+      bookAuthor.contentEditable = false;
+      bookName.contentEditable = false;
+      bookCategory.contentEditable = false;
+      bookYear.contentEditable = false;
+      bookPrice.contentEditable = false;
+
+      button.textContent = "edit";
+
+      // console.log("ir ka dabar?");
+
+      let parsedBooks = JSON.parse(localStorage.getItem("bookList"));
+
+      const editedBook = parsedBooks.filter((book) => {
+        return book.id == li.id;
+      });
+
+      const editedBookOne = editedBook[0];
+
+      // console.log(editedBookOne);
+
+      editedBookOne.author = bookAuthor.textContent;
+      editedBookOne.bookName = bookName.textContent;
+      editedBookOne.category = bookCategory.textContent;
+      editedBookOne.year = bookYear.textContent;
+      editedBookOne.price = bookPrice.textContent;
+
+      // console.log(editedBookOne);
+
+      const result = parsedBooks.map((book) =>
+        book.id === editedBookOne.id ? editedBookOne : book
+      );
+
+      parsedBooks = result;
+
+      localStorage.setItem("bookList", JSON.stringify(parsedBooks));
+    }
+  }
+});
+
+// editinimas
+// -------------------------
+// pastabos
+
+// searchinant pazymejus filtrus, jie neveikia, searchina visas knygas
+// searchinant pazymejus sortinima,jis neveikia, pereina y default sortinima
+
+// pridedant knyga nusiresetina viskas
+
+// editinant galima pridet raidziu i year / price
