@@ -1,22 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 * {
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
-body header {
-  border-bottom: 1px solid black;
+body header .website-logo {
+  padding: 20px;
+  background: linear-gradient(180deg, #213797, #c7cae2);
 }
 body main {
   display: flex;
 }
 body main .filter-section {
+  padding: 20px;
   width: 20%;
   height: 95vh;
-  background-color: lightgray;
+  background: linear-gradient(360deg, #213797, #c7cae2);
   border-right: 1px solid black;
+}
+body main .filter-section .filter-option {
+  font-size: large;
+  font-weight: 600;
+  text-decoration: underline;
+}
+body main .filter-section .filter-button {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+body main .filter-section #authorList li {
+  list-style: none;
+}
+body main .filter-section #categoryList li {
+  list-style: none;
 }
 body main .book-section {
   width: 80%;
+  border-top: 1px solid black;
 }
 body main .book-section .settings-wrapper {
   display: flex;
@@ -29,6 +50,9 @@ body main .book-section .settings-wrapper .search-wrapper {
 body main .book-section .settings-wrapper .sort-menu {
   display: flex;
 }
+body main .book-section .settings-wrapper .sort-menu p {
+  line-height: 30px;
+}
 body main .book-section .book-list-wrapper {
   height: 85vh;
   position: relative;
@@ -37,15 +61,16 @@ body main .book-section .book-list-wrapper {
 body main .book-section .book-list-wrapper #bookList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: start;
   list-style-type: none;
 }
 body main .book-section .book-list-wrapper #bookList .book {
   list-style-type: none;
-  height: 300px;
-  width: 150px;
-  border: 2px brown solid;
-  margin-bottom: 30px;
+  min-height: 385px;
+  width: 230px;
+  border: 1px black solid;
+  margin: 20px;
+  border-radius: 5px;
 }
 body main .book-section .book-list-wrapper #bookList .book .picture-wrapper {
   display: flex;
@@ -56,4 +81,60 @@ body main .book-section .book-list-wrapper #bookList .book .picture-wrapper {
 body main .book-section .book-list-wrapper #bookList .book .picture-wrapper img {
   width: 100%;
   height: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+body main .book-section .book-list-wrapper #bookList .book .text-wrapper {
+  margin: 10px;
+}
+body main .book-section .book-list-wrapper #bookList .book .text-wrapper * {
+  overflow-wrap: break-word;
+}
+body main .book-section .book-list-wrapper #bookList .book .text-wrapper .book-author {
+  font-size: 1.1rem;
+}
+body main .book-section .book-list-wrapper #bookList .book .text-wrapper .book-name {
+  font-style: italic;
+  margin-bottom: 5px;
+}
+body main .book-section .book-list-wrapper #bookList .book .text-wrapper .edit-button {
+  background: linear-gradient(120deg, #1328cb, #9198e5);
+  color: white;
+}
+body main .book-section .book-list-wrapper #bookList .book .text-wrapper .delete-button {
+  background: linear-gradient(120deg, red, rgb(210, 129, 129));
+  color: white;
+}
+
+button {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+input[type=checkbox] {
+  width: 20px; /* Set width */
+  height: 20px; /* Set height */
+  -webkit-clip-path: circle(40% at 50% 50%);
+          clip-path: circle(40% at 50% 50%); /* Set the clip path of circle*/
 }/*# sourceMappingURL=index.css.map */

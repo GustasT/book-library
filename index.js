@@ -30,8 +30,14 @@ bookForm.addEventListener("submit", () => {
   } else {
     let id = new Date().getTime();
 
-    formBookImageUrl.value =
-      "https://www.fcgov.com/recycling-item-images/img/hard-cover-book.jpg";
+    let imageUrl = "";
+
+    if (formBookImageUrl.value == "") {
+      imageUrl =
+        "https://www.fcgov.com/recycling-item-images/img/hard-cover-book.jpg";
+    } else {
+      imageUrl = formBookImageUrl.value;
+    }
 
     function Book() {
       this.author = formAuthor.value;
@@ -39,7 +45,7 @@ bookForm.addEventListener("submit", () => {
       this.category = formCategory.value;
       this.year = formYear.value;
       this.price = formPrice.value;
-      this.bookImageUrl = formBookImageUrl.value;
+      this.bookImageUrl = imageUrl;
       this.id = id;
     }
 
@@ -49,7 +55,7 @@ bookForm.addEventListener("submit", () => {
 
     booksArray.push(book);
 
-    console.log(booksArray);
+    // console.log(booksArray);
 
     const sortById = () => {
       booksArray.sort((a, b) => {
@@ -59,7 +65,7 @@ bookForm.addEventListener("submit", () => {
 
     sortById();
 
-    console.log(booksArray);
+    // console.log(booksArray);
 
     localStorage.setItem("bookList", JSON.stringify(booksArray));
 
@@ -84,7 +90,7 @@ const formBookName = document.getElementById("formBookName");
 const formCategory = document.getElementById("formCategory");
 const formYear = document.getElementById("formYear");
 const formPrice = document.getElementById("formPrice");
-const formBookImageUrl = document.getElementById("formBookImageUrl");
+let formBookImageUrl = document.getElementById("formBookImageUrl");
 
 function loadAllBooks() {
   if (!localStorage.getItem("bookList")) {
@@ -95,7 +101,7 @@ function loadAllBooks() {
 
   activeBookArray = parsedBooks;
 
-  console.log(parsedBooks);
+  // console.log(parsedBooks);
 
   loadActiveArrayBooks();
 }
@@ -121,8 +127,8 @@ function loadActiveArrayBooks() {
         <p class="book-category">${activeBookArray[i].category}</p>
         <p class="book-year">${activeBookArray[i].year}</p>
         <span class="book-price">${activeBookArray[i].price}</span><span>€</span></br>
-        <button class="edit-button">edit</button>
-        <button onclick="deleteBook(${activeBookArray[i].id})">delete</button>
+        <button class="edit-button button">edit</button>
+        <button class="delete-button button" onclick="deleteBook(${activeBookArray[i].id})">delete</button>
       </div>
       </div>
  `;
@@ -150,7 +156,7 @@ function loadAllAuthors() {
     }
   }
 
-  console.log(authorArray);
+  // console.log(authorArray);
 
   authorList.innerHTML = "";
 
@@ -183,7 +189,7 @@ function loadAllCategories() {
     }
   }
 
-  console.log(categoryArray);
+  // console.log(categoryArray);
 
   categoryList.innerHTML = "";
 
@@ -214,7 +220,7 @@ function filterByAuthor(author) {
   if (!authorFilter.classList.contains("active-filter")) {
     booksByAuthor.push(...filteredBooks);
 
-    console.log(booksByAuthor);
+    // console.log(booksByAuthor);
 
     authorFilter.classList.add("active-filter");
   } else {
@@ -222,7 +228,7 @@ function filterByAuthor(author) {
       return book.author != author;
     });
 
-    console.log(booksByAuthor);
+    // console.log(booksByAuthor);
 
     authorFilter.classList.remove("active-filter");
   }
@@ -244,7 +250,7 @@ function filterByCategory(category) {
   if (!categoryFilter.classList.contains("active-filter")) {
     booksByCategory.push(...filteredBooks);
 
-    console.log(booksByCategory);
+    // console.log(booksByCategory);
 
     categoryFilter.classList.add("active-filter");
   } else {
@@ -252,7 +258,7 @@ function filterByCategory(category) {
       return book.category != category;
     });
 
-    console.log(booksByCategory);
+    // console.log(booksByCategory);
 
     categoryFilter.classList.remove("active-filter");
   }
@@ -271,7 +277,7 @@ function merge() {
     ...booksByCategory.filter((d) => !ids.has(d.id)),
   ];
 
-  console.log(activeBookArray);
+  // console.log(activeBookArray);
 }
 
 function loadFilteredBooks() {
@@ -348,14 +354,14 @@ const searchBooks = function (search) {
     keys.some((key) => String(book[key]).toLowerCase().includes(lowSearch))
   );
 
-  console.log(searchedBooks);
+  // console.log(searchedBooks);
 
   activeBookArray = searchedBooks;
 };
 
 const searchButton = document.getElementById("searchButton");
 
-searchButton.addEventListener("click", () => {
+function handleSearch() {
   const parsedBooks = JSON.parse(localStorage.getItem("bookList"));
   activeBookArray = parsedBooks;
   searchBooks(searchField.value);
@@ -364,7 +370,17 @@ searchButton.addEventListener("click", () => {
     helperMessage.innerHTML =
       "no results for this search. try a different keyword";
   }
+}
+
+searchButton.addEventListener("click", () => {
+  handleSearch();
 });
+
+searchField.onkeyup = autoSearch;
+
+function autoSearch() {
+  handleSearch();
+}
 
 // searchinimas
 
@@ -375,19 +391,22 @@ function deleteBook(bookId) {
 
   const book = document.getElementById(bookId);
 
-  book.innerHTML = "";
+  book.style.animation = "fade-out 0.5s forwards";
 
-  // console.log(parsedBooks);
+  const delayedRemoveHtml = setTimeout(removeHtml, 500);
+  console.log(delayedRemoveHtml);
+
+  function removeHtml() {
+    book.innerHTML = "";
+  }
 
   const parsedBooksIndex = parsedBooks
     .map(function (x) {
       return x.id;
     })
     .indexOf(bookId);
-  // console.log(parsedBooksIndex);
 
   parsedBooks.splice(parsedBooksIndex, 1);
-  // console.log(parsedBooks);
 
   const activeBookArrayIndex = activeBookArray
     .map(function (x) {
@@ -467,6 +486,9 @@ ul.addEventListener("click", (event) => {
       parsedBooks = result;
 
       localStorage.setItem("bookList", JSON.stringify(parsedBooks));
+
+      loadAllAuthors();
+      loadAllCategories();
     }
   }
 });

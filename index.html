@@ -18,17 +18,19 @@
       <section class="filter-section">
         <h2>Filters</h2>
 
-        <p>Author:</p>
+        <p class="filter-option">Author:</p>
 
         <ul id="authorList"></ul>
         <button onclick="clearBooksByAuthor()">clear</button>
 
-        <p>Category:</p>
+        <p class="filter-option">Category:</p>
 
         <ul id="categoryList"></ul>
         <button onclick="clearBooksByCategory()">clear</button>
-
-        <button onclick="loadFilteredBooks()">go filter</button>
+        <br />
+        <button class="filter-button" onclick="loadFilteredBooks()">
+          go filter
+        </button>
 
         <div class="form-wrapper">
           <form id="bookForm">
