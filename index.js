@@ -133,8 +133,6 @@ function loadActiveArrayBooks() {
       </div>
  `;
 
-    //  onclick="editBook(${activeBookArray[i].id})"
-
     bookList.appendChild(li);
   }
 }
